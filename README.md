@@ -12,6 +12,7 @@ Welcome to the Book Library project! This project is a web application that allo
 - **Toggle View**: Switch between grid and list views.
 - **View Details**: Open a detailed view of a book in a new tab.
 - **Responsive Design**: Optimized for both desktop and mobile devices.
+- **Auto Search**: Real-time search results as you type.
 
 ## Getting Started
 
@@ -82,7 +83,6 @@ The main JavaScript file that contains the logic for fetching, displaying, searc
 
 ## Dependencies
 
-- [Tailwind CSS](https://tailwindcss.com/): A utility-first CSS framework.
 - [Axios](https://axios-http.com/): A promise-based HTTP client for the browser and Node.js.
 
 ## Contributing
@@ -96,7 +96,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Acknowledgements
 
 - [Free API](https://api.freeapi.app/): The API used to fetch book data.
-- [Tailwind CSS](https://tailwindcss.com/): For the beautiful UI components.
 - [Font Awesome](https://fontawesome.com/): For the icons used in the project.
 
 ---

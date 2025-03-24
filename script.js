@@ -34,8 +34,7 @@ async function fetchBooks(page) {
     if (newBooks.length === 0) {
       // Create toast element
       const toast = document.createElement("div");
-      toast.className =
-        "fixed bottom-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg transform transition-all duration-300";
+      toast.className = "toast";
       toast.textContent = "No more books available.";
 
       // Add to document
@@ -87,26 +86,25 @@ function renderBooks() {
 
     // Create book card using Tailwind CSS
     const card = document.createElement("div");
-    card.className =
-      "flex flex-col bg-white rounded-xl shadow-lg p-5 transform hover:scale-105 hover:shadow-2xl transition-all duration-300 border border-gray-100";
+    card.className = "book-card";
     card.innerHTML = `
-    <div class="relative group cursor-pointer">
-        <img class="w-full h-56 sm:h-64 object-cover rounded-lg shadow-md group-hover:opacity-75 transition-opacity" 
+    <div class="book-image-container">
+        <img class="book-image" 
              src="${thumbnail}" alt="Book cover" loading="lazy">
-        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-            <span class="bg-black bg-opacity-50 text-white px-4 py-2 rounded-full text-sm">View Details</span>
+        <div class="book-overlay">
+            <span class="view-details">View Details</span>
         </div>
     </div>
-    <div class="mt-6 space-y-3">
-        <h2 class="font-bold text-xl text-gray-800 line-clamp-2 hover:line-clamp-none transition-all duration-300">${title}</h2>
-        <div class="space-y-2">
-            <p class="text-sm text-gray-600 flex items-center gap-2">
+    <div class="book-info">
+        <h2 class="book-title">${title}</h2>
+        <div class="book-details">
+            <p class="book-detail">
                 <i class="fas fa-user-friends"></i> ${authors}
             </p>
-            <p class="text-sm text-gray-600 flex items-center gap-2">
+            <p class="book-detail">
                 <i class="fas fa-building"></i> ${publisher}
             </p>
-            <p class="text-sm text-gray-600 flex items-center gap-2">
+            <p class="book-detail">
                 <i class="fas fa-calendar-alt"></i> ${publishedDate}
             </p>
         </div>
@@ -176,75 +174,75 @@ function openBookDetails(book) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>${bookData.title}</title>
-        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="css.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     </head>
-    <body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
-        <div class="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8">
+    <body>
+        <div class="book-details-container">
             <!-- Navigation Bar -->
-            <nav class="flex justify-between items-center mb-8">
-                <h1 class="text-2xl font-bold text-gray-800">Book Details</h1>
-                <button onclick="window.close()" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
-                    <i class="fas fa-times text-gray-600 text-xl"></i>
+            <nav class="book-details-nav">
+                <h1 class="book-details-title">Book Details</h1>
+                <button onclick="window.close()" class="close-btn">
+                    <i class="fas fa-times close-icon"></i>
                 </button>
             </nav>
 
             <!-- Main Content -->
-            <div class="flex flex-col lg:flex-row gap-8 bg-white rounded-2xl shadow-xl p-6">
+            <div class="book-details-content">
                 <!-- Book Image Section -->
-                <div class="lg:w-1/3">
-                    <div class="relative group">
-                        <img class="w-full h-[400px] object-cover rounded-lg shadow-md transition-transform duration-300 group-hover:scale-105" 
+                <div class="book-details-image-container">
+                    <div class="book-details-image-container">
+                        <img class="book-details-image" 
                              src="${bookData.thumbnail}" 
                              alt="${bookData.title}"
                              onerror="this.src='https://via.placeholder.com/400x600?text=No+Image'">
-                        <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity rounded-lg"></div>
+                        <div class="book-details-image-overlay"></div>
                     </div>
                 </div>
 
                 <!-- Book Details Section -->
-                <div class="lg:w-2/3 space-y-6">
-                    <h2 class="text-3xl font-bold text-gray-800 leading-tight">${bookData.title}</h2>
+                <div class="book-details-info">
+                    <h2 class="book-details-main-title">${bookData.title}</h2>
                     
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="flex items-center space-x-2">
-                            <i class="fas fa-users text-blue-500"></i>
+                    <div class="book-details-meta">
+                        <div class="book-meta-item">
+                            <i class="fas fa-users meta-icon-blue"></i>
                             <div>
-                                <p class="text-sm text-gray-500">Authors</p>
-                                <p class="font-medium">${bookData.authors}</p>
+                                <p class="meta-label">Authors</p>
+                                <p class="meta-value">${bookData.authors}</p>
                             </div>
                         </div>
-                        <div class="flex items-center space-x-2">
-                            <i class="fas fa-building text-green-500"></i>
+                        <div class="book-meta-item">
+                            <i class="fas fa-building meta-icon-green"></i>
                             <div>
-                                <p class="text-sm text-gray-500">Publisher</p>
-                                <p class="font-medium">${bookData.publisher}</p>
+                                <p class="meta-label">Publisher</p>
+                                <p class="meta-value">${bookData.publisher}</p>
                             </div>
                         </div>
-                        <div class="flex items-center space-x-2">
-                            <i class="fas fa-calendar text-purple-500"></i>
+                        <div class="book-meta-item">
+                            <i class="fas fa-calendar meta-icon-purple"></i>
                             <div>
-                                <p class="text-sm text-gray-500">Published Date</p>
-                                <p class="font-medium">${bookData.publishedDate}</p>
+                                <p class="meta-label">Published Date</p>
+                                <p class="meta-value">${bookData.publishedDate}</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="space-y-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Description</h3>
-                        <div class="prose max-w-none">
-                            <p class="text-gray-600 leading-relaxed">${bookData.description}</p>
+                    <div class="book-description-container">
+                        <h3 class="book-description-title">Description</h3>
+                        <div class="book-description">
+                            <p>${bookData.description}</p>
                         </div>
                     </div>
 
-                    <div class="flex flex-wrap gap-4 pt-4">
+                    <div class="book-actions">
                         <button onclick="window.print()" 
-                                class="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                                class="btn-print">
                             <i class="fas fa-print"></i>
                             Print Details
                         </button>
                         <button onclick="window.close()" 
-                                class="flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">
+                                class="btn-close">
                             <i class="fas fa-times"></i>
                             Close
                         </button>
@@ -274,7 +272,7 @@ function openBookDetails(book) {
 
 // create a function that toggles the view between tha gride to list
 function toggleView() {
-  if (bookContainer.classList.contains("grid")) {
+  if (bookContainer.classList.contains("book-grid")) {
     renderListView();
   } else {
     renderGridView();
@@ -284,14 +282,8 @@ function toggleView() {
 // Function to render list view
 function renderListView() {
   bookContainer.innerHTML = "";
-  bookContainer.classList.remove(
-    "grid",
-    "grid-cols-1",
-    "md:grid-cols-2",
-    "lg:grid-cols-3",
-    "gap-4"
-  );
-  bookContainer.classList.add("flex", "flex-col", "space-y-4");
+  bookContainer.classList.remove("book-grid");
+  bookContainer.classList.add("book-list");
 
   bookList.forEach((book) => {
     const title = book.volumeInfo?.title || "No Title Available";
@@ -305,15 +297,14 @@ function renderListView() {
       "https://via.placeholder.com/128x192?text=No+Image";
 
     const card = document.createElement("div");
-    card.className =
-      "flex flex-row bg-white rounded-lg shadow p-4 cursor-pointer hover:shadow-lg transition duration-300";
+    card.className = "book-list-item";
     card.innerHTML = `
-            <img class="w-24 h-32 object-cover rounded mr-4" src="${thumbnail}" alt="Book cover">
-            <div class="flex-1">
-                <h2 class="font-bold text-lg">${title}</h2>
-                <p class="text-sm text-gray-600"><strong>Author(s):</strong> ${authors}</p>
-                <p class="text-sm text-gray-600"><strong>Publisher:</strong> ${publisher}</p>
-                <p class="text-sm text-gray-600"><strong>Published Date:</strong> ${publishedDate}</p>
+            <img class="book-list-image" src="${thumbnail}" alt="Book cover">
+            <div class="book-list-info">
+                <h2 class="book-list-title">${title}</h2>
+                <p class="book-list-detail"><strong>Author(s):</strong> ${authors}</p>
+                <p class="book-list-detail"><strong>Publisher:</strong> ${publisher}</p>
+                <p class="book-list-detail"><strong>Published Date:</strong> ${publishedDate}</p>
             </div>
         `;
     card.addEventListener("click", () => openBookDetails(book));
@@ -324,18 +315,10 @@ function renderListView() {
 // Function to render grid view
 function renderGridView() {
   bookContainer.innerHTML = "";
-  bookContainer.classList.remove("flex", "flex-col", "space-y-4");
-  bookContainer.classList.add(
-    "grid",
-    "grid-cols-1",
-    "md:grid-cols-2",
-    "lg:grid-cols-3",
-    "gap-4"
-  );
+  bookContainer.classList.remove("book-list");
+  bookContainer.classList.add("book-grid");
   renderBooks(); // Use the existing renderBooks function for grid view
 }
-
-toggle.addEventListener("click", toggleView);
 
 // Event Listeners
 loadButton.addEventListener("click", () => {
@@ -379,17 +362,16 @@ function renderFilteredBooks(filteredBooks) {
 
     // Create book card
     const card = document.createElement("div");
-    card.className =
-      "max-w-xs bg-white rounded-lg shadow-lg p-4 cursor-pointer hover:shadow-2xl transition duration-300";
+    card.className = "book-card";
     card.innerHTML = `
-          <img class="w-full h-48 object-cover rounded" src="${thumbnail}" alt="Book cover">
-          <div class="mt-4">
-            <h2 class="font-bold text-lg">${title}</h2>
-            <p class="text-sm text-gray-600"><strong>Author(s):</strong> ${authors}</p>
-            <p class="text-sm text-gray-600"><strong>Publisher:</strong> ${publisher}</p>
-            <p class="text-sm text-gray-600"><strong>Published Date:</strong> ${publishedDate}</p>
-          </div>
-        `;
+    <img class="book-image" src="${thumbnail}" alt="Book cover">
+    <div class="book-info">
+    <h2 class="book-title">${title}</h2>
+    <p class="book-detail"><strong>Author(s):</strong> ${authors}</p>
+    <p class="book-detail"><strong>Publisher:</strong> ${publisher}</p>
+    <p class="book-detail"><strong>Published Date:</strong> ${publishedDate}</p>
+    </div>
+    `;
 
     card.addEventListener("click", () => openBookDetails(book));
     bookContainer.appendChild(card);
@@ -397,11 +379,13 @@ function renderFilteredBooks(filteredBooks) {
 }
 
 // Event Listeners
+toggle.addEventListener("click", toggleView);
+
 serach.addEventListener("keyup", searchInput);
 
-sortButtonDate.addEventListener("click", shortDate);
+sortButtonDate.addEventListener("click", shortDate, toggleView);
 
-sortButtonTitle.addEventListener("click", sortTitle);
+sortButtonTitle.addEventListener("click", sortTitle, toggleView);
 
 // Initial Fetch
 fetchBooks(currentPage);

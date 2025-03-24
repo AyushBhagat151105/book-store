@@ -9,48 +9,32 @@
       crossorigin="anonymous"
     ></script>
     <title>Books Library</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen p-4">
-    <div
-      class="max-w-6xl mx-auto bg-white/90 backdrop-blur-sm p-6 shadow-2xl rounded-2xl transition-all duration-300 hover:shadow-blue-200"
-    >
-      <h1
-        class="text-4xl md:text-5xl font-bold text-center mb-8 text-gray-800 hover:scale-105 transition-transform duration-300"
-      >
-        <i class="fas fa-book-open"></i> Book Library
-      </h1>
+  <body>
+    <div class="container">
+      <h1 class="title"><i class="fas fa-book-open"></i> Book Library</h1>
 
-      <div class="flex flex-col md:flex-row gap-4 mb-6">
-        <div class="relative flex-1 group">
+      <div class="controls">
+        <div class="search-container">
           <input
             id="searchInput"
             type="text"
             placeholder="Search by title or author..."
-            class="w-full pl-4 p-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 group-hover:shadow-lg"
+            class="search-input"
           />
-          <i
-            class="fas fa-search absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"
-          ></i>
+          <i class="fas fa-search search-icon"></i>
         </div>
-        <button
-          id="toggleView"
-          class="px-6 py-4 rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center justify-center gap-2"
-        >
+        <button id="toggleView" class="btn bg-blue-600 hover:bg-blue-700">
           <i class="fas fa-exchange-alt"></i> Toggle View
         </button>
       </div>
 
-      <div class="flex flex-col sm:flex-row gap-4 mb-6">
-        <button
-          id="sortTitle"
-          class="px-6 py-4 rounded-xl bg-green-600 text-white hover:bg-green-700 transition-all duration-300 hover:scale-105 hover:shadow-lg flex-1"
-        >
+      <div class="controls">
+        <button id="sortTitle" class="btn bg-green-600 hover:bg-green-700">
           <i class="fas fa-sort-alpha-down"></i> Sort by Title
         </button>
-        <button
-          id="sortDate"
-          class="px-6 py-4 rounded-xl bg-yellow-600 text-white hover:bg-yellow-700 transition-all duration-300 hover:scale-105 hover:shadow-lg flex-1"
-        >
+        <button id="sortDate" class="btn bg-yellow-600 hover:bg-yellow-700">
           <i class="fas fa-calendar-alt"></i> Sort by Date
         </button>
       </div>
@@ -61,14 +45,9 @@
       ></div>
 
       <div class="flex justify-center mt-8">
-        <button
-          id="loadMore"
-          class="group px-8 py-4 rounded-xl bg-gray-800 text-white hover:bg-gray-900 transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center gap-2"
-        >
+        <button id="loadMore" class="btn bg-gray-800 hover:bg-gray-900">
           Load More
-          <span
-            class="transform group-hover:translate-y-1 transition-transform duration-300"
-          >
+          <span>
             <i class="fas fa-arrow-down"></i>
           </span>
         </button>
