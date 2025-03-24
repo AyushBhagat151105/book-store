@@ -80,10 +80,6 @@ The main JavaScript file that contains the logic for fetching, displaying, searc
 - **searchInput()**: Filters the books based on the search input.
 - **renderFilteredBooks(filteredBooks)**: Renders the filtered books to the UI.
 
-### `styles.css`
-
-Custom CSS styles for the project (if any).
-
 ## Dependencies
 
 - [Tailwind CSS](https://tailwindcss.com/): A utility-first CSS framework.
